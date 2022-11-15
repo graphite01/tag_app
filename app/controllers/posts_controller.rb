@@ -10,8 +10,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    if @post.save
+    @post_form = PostForm.new(post_form_params)
+    if @post_form.valid?
+      @post_form.save
       redirect_to root_path
     else
       render :new
