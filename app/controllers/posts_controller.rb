@@ -24,9 +24,13 @@ class PostsController < ApplicationController
     post_attributes = @post.attributes
     @post_form = PostForm.new(post_attributes)
   end
-  
+
   def update
-    if @post.update(post_params)
+    # paramsの内容を反映したインスタンスを生成する
+    @post_form = PostForm.new(post_form_params)
+
+    if @post_form.valid?
+      @post_form.update(post_form_params, @post)
       redirect_to root_path
     else
       render :edit
