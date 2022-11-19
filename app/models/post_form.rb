@@ -1,7 +1,11 @@
 class PostForm
   include ActiveModel::Model
 
-  attr_accessor :text, :image
+  #PostFormクラスのオブジェクトがPostモデルの属性を扱えるようにする
+  attr_accessor(
+    :text, :image,
+    :id, :created_at, :updated_at
+   )
 
   with_options presence: true do
     validates :text
